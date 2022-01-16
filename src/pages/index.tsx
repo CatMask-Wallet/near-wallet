@@ -2,6 +2,7 @@ import { LocaleSwitch } from '@/view/com/localeSwitch';
 import {
   setLocale,
   useDispatch,
+  useHistory,
   useIntl,
   useSelector,
   WalletStateType,
@@ -18,6 +19,15 @@ import { Header } from '@/view/com/head';
 import { RecentActivity } from '@/view/com/ren';
 
 export default function IndexPage() {
+  const history = useHistory()
+  const { accountId, account, balanceInfo } = useSelector<any, WalletStateType>(
+    (state) => state.wallet ,
+  );
+  useEffect(() => {
+    if(!accountId){
+      history.replace('/login')
+    }
+  }, [accountId])
   return (
     <div>
       <Header />

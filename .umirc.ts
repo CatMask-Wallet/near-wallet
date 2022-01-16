@@ -20,6 +20,7 @@ export default defineConfig({
       title: 'overview.title',
       routes: [
         { path: '/', component: '@/pages/index', title: 'overview.title' },
+        { path: '/index.html', component: '@/pages/index', title: 'overview.title' },
         { path: '/login', component: '@/pages/login', title: 'overview.title' },
         { path: '/recover', component: '@/pages/recover', title: 'overview.title' },
         { path: '/send', component: '@/pages/send', title: 'overview.title' },
