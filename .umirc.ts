@@ -14,10 +14,6 @@ export default defineConfig({
     title: true,
   },
   routes: [
-    // { path: '/', component: '@/pages/index', title: 'overview.title' },
-    // { path: '/send', component: '@/pages/send', title: 'overview.title' },
-    // { path: '/receive', component: '@/pages/receive', title: 'overview.title' },
-    // { path: '*', component: '@/pages/404', title: 'overview.title' },
     {
       path: '/',
       component: '@/layouts/index',
@@ -25,6 +21,7 @@ export default defineConfig({
       routes: [
         { path: '/', component: '@/pages/index', title: 'overview.title' },
         { path: '/login', component: '@/pages/login', title: 'overview.title' },
+        { path: '/recover', component: '@/pages/recover', title: 'overview.title' },
         { path: '/send', component: '@/pages/send', title: 'overview.title' },
         {
           path: '/success',

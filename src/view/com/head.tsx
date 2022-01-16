@@ -1,14 +1,20 @@
-import { Link, useHistory } from 'umi';
+import { Link, useDispatch, useHistory, useLocation, useSelector, WalletStateType } from 'umi';
 import { NearMaskIcon } from '../icon/nearMask';
 import { LocaleSwitch } from './localeSwitch';
 import { NetworkSwitch } from './networkSwitch';
 import { Drawer, Button, Divider } from 'antd';
-import { SettingOutlined } from '@ant-design/icons';
+import { LeftOutlined, SettingOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 
 export const Header = () => {
   const { replace } = useHistory();
+  const dispatch = useDispatch()
+  const location = useLocation();
+  const { accountId, account, balanceInfo } = useSelector<any, WalletStateType>(
+    (state) => state.wallet ,
+  );
   const [visible, setVisible] = useState(false);
+  
   return (
     <>
       <header
@@ -20,9 +26,13 @@ export const Header = () => {
         }}
         className="pd10"
       >
-        <Link to={'/'}>
-          <NearMaskIcon />
-        </Link>
+
+        {location.pathname === '/login' ? <b>CatMask</b> : <Link to={accountId ? '/' : '/login'}>
+          
+          {
+            accountId ? <NearMaskIcon /> : <LeftOutlined />
+          }
+        </Link>}
         <NetworkSwitch />
         <div onClick={() => setVisible(true)}>
           <SettingOutlined />
@@ -44,6 +54,7 @@ export const Header = () => {
         <Button
           onClick={() => {
             localStorage.clear();
+            dispatch({type: 'wallet/reStore', payload: 0})
             replace('/login');
           }}
         >

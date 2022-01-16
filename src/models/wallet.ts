@@ -109,8 +109,22 @@ const model: WalletModelType = {
         transactions: action.payload,
       };
     },
+    reStore(state: WalletStateType,) {
+      return {
+        ...state,
+        account: void 0,
+        accountId: void 0,
+        networkConfig: {
+          ...DefaultNetWorkConfig,
+          // TODO custom config
+        },
+        uiNetworkId: getCurrentNetwork(),
+      }
+    }
   },
 };
+
+const defaultInitState = Object.assign({}, model)
 export default model;
 
 export interface WalletStateType {

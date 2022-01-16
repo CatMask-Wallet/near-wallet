@@ -1,6 +1,7 @@
 export default {
   'overview.title': 'CatMask Wallet',
   account: '账户',
+  create: '创建',
   'overview.balance': '可用余额',
   'baseAction.send': '发送',
   'baseAction.receive': '接收',
@@ -12,4 +13,13 @@ export default {
     '你的账户 ID 必须是顶级账户（如 .near）或 64 位字符的地址。',
   'balance.sendToConfirm': '确认并发送',
   'overview.activity': '最近余额变动',
+  'recover.existing-account': '导入已有账户',
+  'recover.text.button': '助记词恢复',
+  'recover.passphrase': '助记词',
+  'recover.info': '确保您有12个单词的恢复短语，然后单击下面的开始恢复过程。',
+  'recover.enter-info': '输入与帐户关联的助记词短语',
+  'recover.title': '使用助记词恢复',
+  'recover.passphraseInput': '助记词（12 个单词）',
+  'recover.inputPlaceholder': '请输入正确的助记词',
+  'recover.submintButton': '查找我的账户',
 };
