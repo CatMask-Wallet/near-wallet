@@ -81,6 +81,7 @@ const model: WalletModelType = {
       };
     },
     setAccountId(state: WalletStateType, action: { payload: string }) {
+      localStorage.currentAccountId = action.payload
       return {
         ...state,
         accountId: action.payload,

@@ -55,7 +55,6 @@ export const RecentActivity = () => {
     info();
   }, [accountId]);
 
-  console.log('transactions---->', transactions);
   const list = transactions.filter(
     (transaction) =>
       transaction.action_kind === 'TRANSFER' && transaction.args.deposit,

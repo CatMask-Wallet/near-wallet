@@ -1,15 +1,17 @@
 # CatMask Wallet project
 
-## Getting Started
+## USE
 
-Install dependencies,
-
-```bash
-$ yarn
+#### get accoudId
+```js
+catMask.getAccoutId(e => {
+    console.log(e) // accoundID
+})
 ```
+ #### sign
+ ```js
+catMask.signTransaction('message', (e)=>{
+    console.log(e)
+})
+ ```
 
-Start the dev server,
-
-```bash
-$ yarn start
-```

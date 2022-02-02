@@ -24,7 +24,7 @@ export default function IndexPage() {
     (state) => state.wallet ,
   );
   useEffect(() => {
-    if(!accountId){
+    if(!accountId && !Boolean(localStorage.currentAccountId)){
       history.replace('/login')
     }
   }, [accountId])
