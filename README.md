@@ -1,7 +1,7 @@
 # CatMask Wallet project
 
-![overview](/readme/overView.png)
-![message](/readme/message.png)
+<img width="200" src="/readme/overView.png" />
+<img width="500" src="/readme/message.png" />
 
 ## USE
 
