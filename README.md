@@ -1,5 +1,8 @@
 # CatMask Wallet project
 
+![overview](/readme/overview.png)
+![message](/readme/message.png)
+
 ## USE
 
 #### get accoudId
@@ -11,7 +14,7 @@ catMask.getAccoutId(e => {
  #### sign
  ```js
 catMask.signTransaction('message', (e)=>{
-    console.log(e)
+    console.log(e) // {message:{publicKey: '', signature: ''}}
 })
  ```
 
