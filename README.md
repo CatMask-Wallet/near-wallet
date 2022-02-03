@@ -4,7 +4,7 @@
 <img width="500" src="/readme/message.png" />
 
 ## Add Catmask to browser
-* click [chrome extensions](chrome://extensions/)
+* to chrome://extensions/
 * Import dist file
 ## Developer documentation
 
