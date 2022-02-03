@@ -43,7 +43,7 @@ window.addEventListener(
   'message',
   function (event) {
     if (event.source != window) return;
-    if (event.data.type === CAT_MASK_MESSAGE_PTOC_TYPE){
+    if (event.data.type === CAT_MASK_MESSAGE_PTOC_TYPE) {
       if (!event.data.message) return;
       let json;
       try {
@@ -53,7 +53,7 @@ window.addEventListener(
       }
       if (!json.origin) return;
       chrome.runtime.sendMessage(json, function (response) {
-        if(json.type === 'getAccoutId'){
+        if (json.type === 'getAccoutId') {
           postMessage(
             { type: CAT_MASK_MESSAGE_CTOP_TYPE, message: response },
             json.origin,
@@ -66,16 +66,15 @@ window.addEventListener(
 );
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-  console.log(request, sender, sendResponse);
-  if(request.type === CAT_MASK_MESSAGE_BTOC_TYPE){
+  // console.log(request, sender, sendResponse);
+  if (request.type === CAT_MASK_MESSAGE_BTOC_TYPE) {
     postMessage(
       { type: CAT_MASK_MESSAGE_CTOP_TYPE, message: request.data },
       request.origin,
     );
   }
-  sendResponse("close");
+  sendResponse('close');
 });
-
 
 if (shouldInjectProvider()) {
   injectScript(inPageBundle);
