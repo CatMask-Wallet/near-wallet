@@ -7,8 +7,8 @@
 /yarn.lock
 /package-lock.json
 
-# production
-/dist
+# chrome://extensions/
+# /dist
 
 # misc
 .DS_Store

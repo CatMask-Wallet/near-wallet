@@ -3,7 +3,10 @@
 <img width="200" src="/readme/overView.png" />
 <img width="500" src="/readme/message.png" />
 
-## USE
+## Add Catmask to browser
+* click [chrome extensions](chrome://extensions/)
+* Import dist file
+## Developer documentation
 
 #### get accoudId
 ```js
