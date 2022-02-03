@@ -1,6 +1,6 @@
 # CatMask Wallet project
 
-![overview](/readme/overview.png)
+![overview](/readme/overView.png)
 ![message](/readme/message.png)
 
 ## USE
