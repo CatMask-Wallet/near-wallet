@@ -19,8 +19,8 @@ function create() {
     try {
       create(
         {
-          url: "/background/message.html",
-          type: "popup",
+          url: '/index.html?type=backgroundMessage',
+          type: 'popup',
           height: WINDOW_HEIGHT,
           width: WINDOW_WIDTH,
           top: Math.max(windowTop, 0),
@@ -38,12 +38,12 @@ function create() {
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   console.log(request, sender, sendResponse);
-  if (request.type === "signTransaction") {
-    sendResponse("miss");
+  if (request.type === 'signTransaction') {
+    sendResponse('miss');
     localStorage.ptc_message_json = JSON.stringify(request);
     create();
   }
-  if (request.type === "getAccoutId") {
+  if (request.type === 'getAccoutId') {
     sendResponse(localStorage.currentAccountId);
   }
 });
