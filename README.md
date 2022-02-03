@@ -13,8 +13,8 @@ catMask.getAccoutId(e => {
 ```
  #### sign
  ```js
-catMask.signTransaction('message', (e)=>{
-    console.log(e) // {message:{publicKey: '', signature: ''}}
+catMask.signTransaction('you messageText..', (e)=>{
+    console.log(e) // {message:{publicKey: '', signature: 'base64'}}
 })
  ```
 

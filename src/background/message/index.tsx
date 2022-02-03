@@ -33,7 +33,7 @@ export const BackgroundMessagePage: FC<{}> = () => {
         const { publicKey, secretKey } = parseSeedPhrase(recoverySeedPhrase);
         const keyPair = KeyPair.fromString(secretKey);
         const sign = keyPair.sign(Buffer.from(json.message));
-        console.log('sign--->', sign);
+
         tabs.map((tab) => {
           // @ts-ignore
           chrome.tabs.sendMessage(
@@ -42,7 +42,7 @@ export const BackgroundMessagePage: FC<{}> = () => {
               type: CAT_MASK_MESSAGE_BTOC_TYPE,
               data: {
                 publicKey: publicKey.toString(),
-                signature: sign.signature.toString(),
+                signature: Buffer.from(sign.signature).toString('base64'),
               },
               origin: json.origin,
             },
