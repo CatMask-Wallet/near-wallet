@@ -14,10 +14,37 @@ catMask.getAccoutId(e => {
     console.log(e) // accoundID
 })
 ```
- #### sign
+ #### sign Message
  ```js
-catMask.signTransaction('you messageText..', (e)=>{
+catMask.signMessage('you messageText..', (e)=>{
     console.log(e) // {message:{publicKey: '', signature: 'base64'}}
 })
  ```
+ #### sign Transaction
+ ```js
+catMask.signTransaction(new Uint8Array([2, 88]).toString() /*transaction hash*/, (e)=>{
+    console.log(e) // {message:{publicKey: '', signature: Uint8Array.toString()}}
+})
+```
+Project use examples： /tests/signtansaction.tsx
 
+
+#### sign TransactionAndSendRaw
+* Under development
+* A catmask Syntax of signtransaction. It does not operate the wallet itself.
+```ts
+const contractId = ""
+const methodName = ""
+const actions = [
+    transactions.functionCall(
+        methodName,
+        Buffer.from(JSON.stringify({})),
+        new BN("10000000000000"),
+        new BN(10).pow(new BN(24))
+    )
+]
+catMask.signTransactionAndSendRaw({contractId, methodName, actions}, e => {
+    // you code
+    // e: broadcast_tx_commit res
+})
+```

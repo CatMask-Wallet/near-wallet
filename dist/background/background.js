@@ -1,39 +1,43 @@
 function getExtension() {
   return chrome?.app && chrome?.app.window ? chrome?.app : chrome;
 }
-function create() {
-  const e = 625,
-    t = 376,
+function create(e) {
+  const t = 625,
+    n = 376,
     o = getExtension(),
-    { create: n } = o.windows,
-    { screenY: r, outerWidth: c, outerHeight: a } = window,
-    i = Math.round(r + a / 2 - e),
-    s = Math.round(c);
-  return new Promise((o, r) => {
+    { create: r } = o.windows,
+    { screenY: a, outerWidth: c, outerHeight: s } = window,
+    i = Math.round(a + s / 2 - t),
+    g = Math.round(c);
+  return new Promise((o, a) => {
     try {
-      n(
+      r(
         {
-          url: '/index.html?type=backgroundMessage',
+          url: `/index.html?type=${e}`,
           type: 'popup',
-          height: e,
-          width: t,
+          height: t,
+          width: n,
           top: Math.max(i, 0),
-          left: Math.max(s, 0),
+          left: Math.max(g, 0),
         },
         (e) => {
           o(e);
         },
       );
     } catch (c) {
-      r(c);
+      a(c);
     }
   });
 }
-chrome.runtime.onMessage.addListener(function (e, t, o) {
-  console.log(e, t, o),
-    'signTransaction' === e.type &&
-      (o('miss'),
+chrome.runtime.onMessage.addListener(function (e, t, n) {
+  console.log(e, t, n),
+    'signMessage' === e.type &&
+      (n('miss'),
       (localStorage.ptc_message_json = JSON.stringify(e)),
-      create()),
-    'getAccoutId' === e.type && o(localStorage.currentAccountId);
+      create('backgroundMessage')),
+    'signTransaction' === e.type &&
+      (n('miss'),
+      (localStorage.ptc_message_json = JSON.stringify(e)),
+      create('backgroundTransaction')),
+    'getAccoutId' === e.type && n(localStorage.currentAccountId);
 });

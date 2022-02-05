@@ -81,7 +81,7 @@ const model: WalletModelType = {
       };
     },
     setAccountId(state: WalletStateType, action: { payload: string }) {
-      localStorage.currentAccountId = action.payload
+      localStorage.currentAccountId = action.payload;
       return {
         ...state,
         accountId: action.payload,
@@ -97,7 +97,6 @@ const model: WalletModelType = {
     setBalance(state: WalletStateType, action: { payload: IBalanceInfo }) {
       return {
         ...state,
-        publicKey: action.payload,
         balanceInfo: action.payload,
       };
     },
@@ -110,7 +109,7 @@ const model: WalletModelType = {
         transactions: action.payload,
       };
     },
-    reStore(state: WalletStateType,) {
+    reStore(state: WalletStateType) {
       return {
         ...state,
         account: void 0,
@@ -120,12 +119,12 @@ const model: WalletModelType = {
           // TODO custom config
         },
         uiNetworkId: getCurrentNetwork(),
-      }
-    }
+      };
+    },
   },
 };
 
-const defaultInitState = Object.assign({}, model)
+const defaultInitState = Object.assign({}, model);
 export default model;
 
 export interface WalletStateType {

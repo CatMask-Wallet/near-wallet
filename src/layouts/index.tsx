@@ -44,7 +44,7 @@ const layout: React.FC<{}> = ({ children }) => {
     () => {
       info();
     },
-    5e3,
+    10e3,
     {
       immediate: true,
     },

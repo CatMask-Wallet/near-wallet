@@ -7,7 +7,7 @@ function getExtension() {
   return chrome;
 }
 
-function create() {
+function create(typeStr) {
   const WINDOW_HEIGHT = 625;
   const WINDOW_WIDTH = 376;
   const extension = getExtension();
@@ -19,7 +19,7 @@ function create() {
     try {
       create(
         {
-          url: '/index.html?type=backgroundMessage',
+          url: `/index.html?type=${typeStr}`,
           type: 'popup',
           height: WINDOW_HEIGHT,
           width: WINDOW_WIDTH,
@@ -38,10 +38,15 @@ function create() {
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   console.log(request, sender, sendResponse);
+  if (request.type === 'signMessage') {
+    sendResponse('miss');
+    localStorage.ptc_message_json = JSON.stringify(request);
+    create('backgroundMessage');
+  }
   if (request.type === 'signTransaction') {
     sendResponse('miss');
     localStorage.ptc_message_json = JSON.stringify(request);
-    create();
+    create('backgroundTransaction');
   }
   if (request.type === 'getAccoutId') {
     sendResponse(localStorage.currentAccountId);

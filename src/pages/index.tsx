@@ -20,12 +20,16 @@ import { AccountBalance } from '@/view/com/overview/accountBalance';
 import { Header } from '@/view/com/head';
 import { RecentActivity } from '@/view/com/ren';
 import { BackgroundMessagePage } from '@/background/message/index';
+import { BackgroundTransacationPage } from '@/background/transaction';
 
 export default function IndexPage() {
   const params = useLocation() as any;
   const type = params?.query?.type;
   if (type === 'backgroundMessage') {
     return <BackgroundMessagePage />;
+  }
+  if (type === 'backgroundTransaction') {
+    return <BackgroundTransacationPage />;
   }
   const history = useHistory();
   const { accountId, account, balanceInfo } = useSelector<any, WalletStateType>(

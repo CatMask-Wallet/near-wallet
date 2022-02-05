@@ -10,6 +10,26 @@ export async function getAccountIds({
     signal: controller.signal,
   }).then((res) => res.json());
 }
+
+let _nextId = 123;
+export async function sendJsonRpc(
+  ACCOUNT_NODE_URL: string,
+  method: string,
+  params: object,
+) {
+  return await fetch(`${ACCOUNT_NODE_URL}/`, {
+    headers: {
+      'content-type': 'application/json; charset=utf-8',
+    },
+    body: JSON.stringify({
+      method: method,
+      params: params,
+      id: _nextId++,
+      jsonrpc: '2.0',
+    }),
+    method: 'POST',
+  }).then((res) => res.json());
+}
 export async function getFiat({
   ACCOUNT_HELPER_URL,
 }: {

@@ -4,7 +4,7 @@ const CAT_MASK_MESSAGE_PTOC_TYPE =
     'chrome_web3_wallet_CatMaskMessageType_background_to_content',
   CAT_MASK_MESSAGE_CTOP_TYPE =
     'chrome_web3_wallet_CatMaskMessageType_content_to_page',
-  inPageBundle = `\nconst catMask = {\n  getAccoutId: function (callback) {\n    const json = JSON.stringify({\n      type: 'getAccoutId',\n      origin: location.origin,\n    });\n    postMessage({ type: '${CAT_MASK_MESSAGE_PTOC_TYPE}', message: json }, '*');\n    const Handler = function (event) {\n      if (event.data.type !== '${CAT_MASK_MESSAGE_CTOP_TYPE}') return;\n      delete event.data.type\n      callback(event.data?.message);\n      window.removeEventListener('message', Handler);\n    };\n    window.addEventListener('message', Handler);\n  },\n  signTransaction: function (message, callback) {\n    const json = JSON.stringify({\n      type: 'signTransaction',\n      message: message || '',\n      origin: location.origin,\n    });\n    postMessage({ type: '${CAT_MASK_MESSAGE_PTOC_TYPE}', message: json }, '*');\n    const Handler = function (event) {\n      if (event.data.type !== '${CAT_MASK_MESSAGE_CTOP_TYPE}') return;\n      delete event.data.type\n      callback(event.data);\n      window.removeEventListener('message', Handler);\n    };\n    window.addEventListener('message', Handler);\n  },\n};\nwindow.catMask = catMask\n`;
+  inPageBundle = `\nconst catMask = {\n  getAccoutId: function (callback) {\n    const json = JSON.stringify({\n      type: 'getAccoutId',\n      origin: location.origin,\n    });\n    postMessage({ type: '${CAT_MASK_MESSAGE_PTOC_TYPE}', message: json }, '*');\n    const Handler = function (event) {\n      if (event.data.type !== '${CAT_MASK_MESSAGE_CTOP_TYPE}') return;\n      delete event.data.type\n      callback(event.data?.message);\n      window.removeEventListener('message', Handler);\n    };\n    window.addEventListener('message', Handler);\n  },\n  signMessage: function (message, callback) {\n    const json = JSON.stringify({\n      type: 'signMessage',\n      message: message || '',\n      origin: location.origin,\n    });\n    postMessage({ type: '${CAT_MASK_MESSAGE_PTOC_TYPE}', message: json }, '*');\n    const Handler = function (event) {\n      if (event.data.type !== '${CAT_MASK_MESSAGE_CTOP_TYPE}') return;\n      delete event.data.type\n      callback(event.data);\n      window.removeEventListener('message', Handler);\n    };\n    window.addEventListener('message', Handler);\n  },\n  signTransaction: function (message, callback) {\n    const json = JSON.stringify({\n      type: 'signTransaction',\n      message: message || '',\n      origin: location.origin,\n    });\n    postMessage({ type: '${CAT_MASK_MESSAGE_PTOC_TYPE}', message: json }, '*');\n    const Handler = function (event) {\n      if (event.data.type !== '${CAT_MASK_MESSAGE_CTOP_TYPE}') return;\n      delete event.data.type\n      callback(event.data);\n      window.removeEventListener('message', Handler);\n    };\n    window.addEventListener('message', Handler);\n  },\n};\nwindow.catMask = catMask\n`;
 function injectScript(e) {
   try {
     const n = document.head || document.documentElement,
@@ -43,8 +43,8 @@ function blockedDomainCheck() {
   const e = [],
     n = window.location.href;
   let t;
-  for (let o = 0; o < e.length; o++) {
-    const a = e[o].replace('.', '\\.');
+  for (let s = 0; s < e.length; s++) {
+    const a = e[s].replace('.', '\\.');
     if (((t = new RegExp(`(?:https?:\\/\\/)(?:(?!${a}).)*$`, 'u')), !t.test(n)))
       return !0;
   }

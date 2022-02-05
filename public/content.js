@@ -20,6 +20,21 @@ const catMask = {
     };
     window.addEventListener('message', Handler);
   },
+  signMessage: function (message, callback) {
+    const json = JSON.stringify({
+      type: 'signMessage',
+      message: message || '',
+      origin: location.origin,
+    });
+    postMessage({ type: '${CAT_MASK_MESSAGE_PTOC_TYPE}', message: json }, '*');
+    const Handler = function (event) {
+      if (event.data.type !== '${CAT_MASK_MESSAGE_CTOP_TYPE}') return;
+      delete event.data.type
+      callback(event.data);
+      window.removeEventListener('message', Handler);
+    };
+    window.addEventListener('message', Handler);
+  },
   signTransaction: function (message, callback) {
     const json = JSON.stringify({
       type: 'signTransaction',

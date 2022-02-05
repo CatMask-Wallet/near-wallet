@@ -7,13 +7,13 @@ import { FC, useEffect, useState } from 'react';
 import { parseSeedPhrase } from 'near-seed-phrase';
 import { CAT_MASK_MESSAGE_BTOC_TYPE } from '../constant';
 
-export const BackgroundMessagePage: FC<{}> = () => {
+export const BackgroundTransacationPage: FC<{}> = () => {
   const [messageText, setMessageText] = useState('--');
   const [originText, setOriginText] = useState('--');
   useEffect(() => {
     try {
       const json = JSON.parse(localStorage.ptc_message_json);
-      // const json = {type: 'signMessage', message: 'xx', origin: 'oo'}
+      //   const json = {type: 'backgroundTransaction', message: 'xx', origin: 'oo'}
       setMessageText(json?.message);
       setOriginText(json?.origin);
     } catch (error) {
@@ -31,7 +31,13 @@ export const BackgroundMessagePage: FC<{}> = () => {
         if (!json.message) return console.error('not message');
         const { publicKey, secretKey } = parseSeedPhrase(recoverySeedPhrase);
         const keyPair = KeyPair.fromString(secretKey);
-        const sign = keyPair.sign(Buffer.from(json.message));
+        const sign = keyPair.sign(
+          Buffer.from(
+            new Uint8Array(
+              json.message.split(',').map((e: string) => Number(e)),
+            ),
+          ),
+        );
 
         tabs.map((tab) => {
           // @ts-ignore
@@ -41,7 +47,7 @@ export const BackgroundMessagePage: FC<{}> = () => {
               type: CAT_MASK_MESSAGE_BTOC_TYPE,
               data: {
                 publicKey: publicKey.toString(),
-                signature: Buffer.from(sign.signature).toString('base64'),
+                signature: sign.signature.toString(),
               },
               origin: json.origin,
             },
@@ -57,7 +63,7 @@ export const BackgroundMessagePage: FC<{}> = () => {
     <>
       <Card>
         <div style={{ textAlign: 'center' }}>
-          <h1>Message</h1>
+          <h1>Sign Transaction</h1>
           <h3>
             Origin: <span style={{ fontSize: 14 }}>{originText}</span>
           </h3>
