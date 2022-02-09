@@ -16,6 +16,7 @@ import sha256 from 'js-sha256';
 // @ts-expect-error
 import { parseSeedPhrase } from 'near-seed-phrase';
 import { sendJsonRpc } from '@/utils/helper-api';
+import { actionsObjToHash } from '@/utils/tansaction';
 
 export default () => {
   const { accountId, account, balanceInfo, publicKey } = useSelector<
@@ -24,6 +25,7 @@ export default () => {
   >((state) => state.wallet);
 
   const currentNetWork = useCurrentNetworkConfig();
+
   const onDeposit = async () => {
     if (!accountId) return console.error('not account');
     if (!publicKey) return console.error('not publicKey');
@@ -37,6 +39,8 @@ export default () => {
         new BN(10).pow(new BN(24)),
       ),
     ];
+
+    console.log('actions---->', actions);
     const blockRes = await sendJsonRpc(currentNetWork.nodeUrl, 'block', {
       finality: 'final',
     });
@@ -97,9 +101,33 @@ export default () => {
       },
     );
   };
+  const contractId = 'wrap.testnet';
+  const methodName = 'near_deposit';
+  const onDeposit2 = async () => {
+    if (!accountId) return console.error('not account');
+    if (!publicKey) return console.error('not publicKey');
+    const res = await actionsObjToHash({
+      accountId,
+      publicKey,
+      contractId,
+      actions: [
+        {
+          methodName,
+          args: {},
+          gas: '10000000000000',
+          deposit: new BN(10).pow(new BN(24)).toString(),
+        },
+      ],
+      nodeUrl: currentNetWork.nodeUrl,
+    });
+    console.log('res------>', res);
+  };
   return (
     <>
-      <Button onClick={onDeposit}>depositWrapNear</Button>
+      <Button onClick={onDeposit}>depositWrapNear -- hash</Button>
+      <Button onClick={onDeposit2}>
+        depositWrapNear TransactionAndSendRaw
+      </Button>
     </>
   );
 };
