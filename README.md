@@ -30,21 +30,19 @@ Project use examples： /tests/signtansaction.tsx
 
 
 #### sign TransactionAndSendRaw
-* Under development
-* A catmask Syntax of signtransaction. It does not operate the wallet itself.
+* transaction and send
 ```ts
-const contractId = ""
-const methodName = ""
-const actions = [
-    transactions.functionCall(
-        methodName,
-        Buffer.from(JSON.stringify({})),
-        new BN("10000000000000"),
-        new BN(10).pow(new BN(24))
-    )
-]
-catMask.signTransactionAndSendRaw({contractId, methodName, actions}, e => {
-    // you code
-    // e: broadcast_tx_commit res
+catMask.signTransactionAndSendRaw({
+    contractId: 'wrap.testnet',
+    actions: [
+        {
+          methodName: 'near_deposit2',
+          args: {},
+          gas: '10000000000000',
+          deposit: '1000000000000000000000000',
+        },
+      ],
+}, (e) => {
+    console.log(e)
 })
 ```

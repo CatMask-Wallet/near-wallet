@@ -36,6 +36,9 @@ export const DefaultNetWorkConfig = {
   },
 };
 
+if (!localStorage.netWorkConfigs) {
+  localStorage.netWorkConfigs = JSON.stringify(DefaultNetWorkConfig);
+}
 export const getUiNetWorkName = (v: string) => {
   return v[0].toLocaleUpperCase() + v.substring(1, v.length);
 };

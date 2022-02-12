@@ -13,7 +13,7 @@ import { baseDecode, serialize } from 'near-api-js/node_modules/borsh';
 import { parseSeedPhrase } from 'near-seed-phrase';
 import { sendJsonRpc } from './helper-api';
 
-interface IAuction {
+export interface IAuction {
   methodName: string;
   args: object;
   gas: string;

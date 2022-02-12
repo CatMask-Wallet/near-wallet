@@ -37,7 +37,7 @@ function create(typeStr) {
 }
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-  console.log(request, sender, sendResponse);
+  // console.log(request, sender, sendResponse);
   if (request.type === 'signMessage') {
     sendResponse('miss');
     localStorage.ptc_message_json = JSON.stringify(request);
@@ -47,6 +47,14 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     sendResponse('miss');
     localStorage.ptc_message_json = JSON.stringify(request);
     create('backgroundTransaction');
+  }
+  if (request.type === 'signTransactionAndSendRaw') {
+    sendResponse('miss');
+    localStorage.ptc_message_json = JSON.stringify({
+      ...request.message,
+      origin: request.origin,
+    });
+    create('backgroundTransactionAndSend');
   }
   if (request.type === 'getAccoutId') {
     sendResponse(localStorage.currentAccountId);

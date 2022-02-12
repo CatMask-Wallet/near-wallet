@@ -21,6 +21,7 @@ import { Header } from '@/view/com/head';
 import { RecentActivity } from '@/view/com/ren';
 import { BackgroundMessagePage } from '@/background/message/index';
 import { BackgroundTransacationPage } from '@/background/transaction';
+import { BackgroundTransacationAndSendPage } from '@/background/transactionAndSend';
 
 export default function IndexPage() {
   const params = useLocation() as any;
@@ -30,6 +31,9 @@ export default function IndexPage() {
   }
   if (type === 'backgroundTransaction') {
     return <BackgroundTransacationPage />;
+  }
+  if (type === 'backgroundTransactionAndSend') {
+    return <BackgroundTransacationAndSendPage />;
   }
   const history = useHistory();
   const { accountId, account, balanceInfo } = useSelector<any, WalletStateType>(
