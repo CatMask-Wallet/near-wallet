@@ -35,6 +35,7 @@ Project use examples： /tests/signtansaction.tsx
 catMask.signTransactionAndSendRaw({
     contractId: 'wrap.testnet',
     actions: [
+        // FunctionCall
         {
           methodName: 'near_deposit2',
           args: {},

@@ -55976,7 +55976,11 @@
           f = Object(a['useState'])('--'),
           d = Object(U['a'])(f, 2),
           h = d[0],
-          p = d[1];
+          p = d[1],
+          m = Object(a['useState'])(!1),
+          v = Object(U['a'])(m, 2),
+          g = v[0],
+          _ = v[1];
         Object(a['useEffect'])(() => {
           try {
             var e = JSON.parse(localStorage.ptc_message_json),
@@ -55988,7 +55992,7 @@
             console.log(o);
           }
         }, []);
-        var m = (function () {
+        var w = (function () {
           var e = Object(y['a'])(
             b.a.mark(function e() {
               var t, n, r, i, o, a, s, u, c;
@@ -55998,7 +56002,8 @@
                     switch ((e.prev = e.next)) {
                       case 0:
                         if (
-                          ((e.prev = 0),
+                          (_(!0),
+                          (e.prev = 1),
                           (t = JSON.parse(localStorage.ptc_message_json)),
                           (n = t.contractId),
                           (r = t.actions),
@@ -56007,40 +56012,43 @@
                           (a = i[localStorage.currentNetwork].nodeUrl),
                           o)
                         ) {
-                          e.next = 7;
-                          break;
-                        }
-                        return e.abrupt(
-                          'return',
-                          console.error('not SeedPhras'),
-                        );
-                      case 7:
-                        if (a) {
                           e.next = 9;
                           break;
                         }
-                        return e.abrupt(
-                          'return',
-                          console.error(
-                            'not find network nodeUrl',
-                            i,
-                            localStorage.currentNetwork,
-                          ),
+                        return (
+                          _(!1),
+                          e.abrupt('return', console.error('not SeedPhras'))
                         );
                       case 9:
-                        if (0 !== r.length) {
-                          e.next = 11;
+                        if (a) {
+                          e.next = 12;
                           break;
                         }
-                        return e.abrupt(
-                          'return',
-                          console.error('not auctions'),
+                        return (
+                          _(!1),
+                          e.abrupt(
+                            'return',
+                            console.error(
+                              'not find network nodeUrl',
+                              i,
+                              localStorage.currentNetwork,
+                            ),
+                          )
                         );
-                      case 11:
+                      case 12:
+                        if (0 !== r.length) {
+                          e.next = 15;
+                          break;
+                        }
+                        return (
+                          _(!1),
+                          e.abrupt('return', console.error('not auctions'))
+                        );
+                      case 15:
                         return (
                           (s = Object(Oe['parseSeedPhrase'])(o)),
                           (u = s.publicKey),
-                          (e.next = 14),
+                          (e.next = 18),
                           Object(xe['a'])({
                             contractId: n,
                             actions: r,
@@ -56049,7 +56057,7 @@
                             publicKey: u,
                           })
                         );
-                      case 14:
+                      case 18:
                         (c = e.sent),
                           chrome.tabs.query(
                             { active: !0, currentWindow: !1 },
@@ -56065,22 +56073,25 @@
                               });
                             },
                           ),
-                          (e.next = 21);
+                          (e.next = 26);
                         break;
-                      case 18:
+                      case 22:
                         return (
-                          (e.prev = 18),
-                          (e.t0 = e['catch'](0)),
+                          (e.prev = 22),
+                          (e.t0 = e['catch'](1)),
+                          _(!1),
                           e.abrupt('return', console.error(e.t0))
                         );
-                      case 21:
+                      case 26:
+                        _(!1);
+                      case 27:
                       case 'end':
                         return e.stop();
                     }
                 },
                 e,
                 null,
-                [[0, 18]],
+                [[1, 22]],
               );
             }),
           );
@@ -56094,7 +56105,7 @@
               Object(l['jsxs'])('div', {
                 style: { textAlign: 'center' },
                 children: [
-                  Object(l['jsx'])('h1', { children: 'Sign Transaction' }),
+                  Object(l['jsx'])('h1', { children: 'Transaction And Send' }),
                   Object(l['jsxs'])('h3', {
                     children: [
                       'Origin: ',
@@ -56180,8 +56191,9 @@
               }),
               Object(l['jsx'])(r['a'], {}),
               Object(l['jsx'])(Se.a, {
+                loading: g,
                 id: 'message-approved-button',
-                onClick: m,
+                onClick: w,
                 children: 'approve',
               }),
             ],
@@ -74041,7 +74053,27 @@
               return function () {
                 return e.apply(this, arguments);
               };
-            })();
+            })(),
+            k = () => {
+              var e = [Object(l['transfer'])(new u['BN'](1))];
+              console.log(e),
+                catMask.signTransactionAndSendRaw(
+                  {
+                    contractId: 'bigcat.testnet',
+                    actions: [
+                      {
+                        methodName: 'transfer',
+                        args: {},
+                        gas: '10000000000000',
+                        deposit: '1000000000000000000000000',
+                      },
+                    ],
+                  },
+                  (e) => {
+                    console.log(e);
+                  },
+                );
+            };
           return Object(g['jsxs'])(g['Fragment'], {
             children: [
               Object(g['jsx'])(r['a'], {
@@ -74051,6 +74083,10 @@
               Object(g['jsx'])(r['a'], {
                 onClick: M,
                 children: 'depositWrapNear TransactionAndSendRaw',
+              }),
+              Object(g['jsx'])(r['a'], {
+                onClick: k,
+                children: 'wallet transaction and send',
               }),
             ],
           });

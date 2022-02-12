@@ -19,6 +19,7 @@ export const BackgroundTransacationAndSendPage: FC<{}> = () => {
   const [messageContractId, setMessageContractId] = useState<string>();
   const [messageActions, setMessageActions] = useState<IAuction[]>();
   const [originText, setOriginText] = useState('--');
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     try {
       const { contractId, actions, origin } = JSON.parse(
@@ -32,6 +33,7 @@ export const BackgroundTransacationAndSendPage: FC<{}> = () => {
     }
   }, []);
   const onApprove = async () => {
+    setLoading(true);
     try {
       const { contractId, actions } = JSON.parse(
         localStorage.ptc_message_json,
@@ -42,8 +44,12 @@ export const BackgroundTransacationAndSendPage: FC<{}> = () => {
 
       const recoverySeedPhrase = localStorage.recoverySeedPhrase;
       const nodeUrl = netWorkConfig[localStorage.currentNetwork].nodeUrl;
-      if (!recoverySeedPhrase) return console.error('not SeedPhras');
+      if (!recoverySeedPhrase) {
+        setLoading(false);
+        return console.error('not SeedPhras');
+      }
       if (!nodeUrl) {
+        setLoading(false);
         return console.error(
           'not find network nodeUrl',
           netWorkConfig,
@@ -51,6 +57,7 @@ export const BackgroundTransacationAndSendPage: FC<{}> = () => {
         );
       }
       if (actions.length === 0) {
+        setLoading(false);
         return console.error('not auctions');
       }
       const { publicKey } = parseSeedPhrase(recoverySeedPhrase);
@@ -82,8 +89,10 @@ export const BackgroundTransacationAndSendPage: FC<{}> = () => {
         },
       );
     } catch (error) {
+      setLoading(false);
       return console.error(error);
     }
+    setLoading(false);
   };
   return (
     <>
@@ -123,7 +132,11 @@ export const BackgroundTransacationAndSendPage: FC<{}> = () => {
           </div>
         </div>
         <Divider />
-        <Button id="message-approved-button" onClick={onApprove}>
+        <Button
+          loading={loading}
+          id="message-approved-button"
+          onClick={onApprove}
+        >
           approve
         </Button>
       </Card>

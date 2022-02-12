@@ -7,6 +7,7 @@ import {
   SCHEMA,
   Signature,
   SignedTransaction,
+  transfer,
 } from 'near-api-js/lib/transaction';
 import { KeyPair, PublicKey } from 'near-api-js/lib/utils';
 import { baseDecode, serialize } from 'near-api-js/node_modules/borsh';
@@ -122,12 +123,34 @@ export default () => {
     });
     console.log('res------>', res);
   };
+  const onDeposit3 = () => {
+    const actions = [transfer(new BN(1))];
+    console.log(actions);
+    // @ts-ignore
+    catMask.signTransactionAndSendRaw(
+      {
+        contractId: 'bigcat.testnet',
+        actions: [
+          {
+            methodName: 'transfer',
+            args: {},
+            gas: '10000000000000',
+            deposit: '1000000000000000000000000',
+          },
+        ],
+      },
+      (e: any) => {
+        console.log(e);
+      },
+    );
+  };
   return (
     <>
       <Button onClick={onDeposit}>depositWrapNear -- hash</Button>
       <Button onClick={onDeposit2}>
         depositWrapNear TransactionAndSendRaw
       </Button>
+      <Button onClick={onDeposit3}>wallet transaction and send</Button>
     </>
   );
 };
