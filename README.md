@@ -4,9 +4,35 @@
 <img width="500" src="/readme/message.png" />
 
 ## Add Catmask to browser
+###  Import file 
 * to chrome://extensions/
 * Import dist file
+
+### Import crx
+ foilomhjgalllihmeljgjaijpbebecmc_main.crx
+### google 
+
+https://chrome.google.com/webstore/detail/metamask/foilomhjgalllihmeljgjaijpbebecmc
+
+`Google audit in progress`
+
+
+
 ## Developer documentation
+
+### Install
+
+**src**
+ 
+ ```
+ https://raw.githubusercontent.com/CatMask-Wallet/near-wallet/main/public/web.js
+ ```
+
+**npm**
+
+```
+TODO
+```
 
 #### get accoudId
 ```js
