@@ -82,14 +82,7 @@ window.addEventListener(
         return console.log('invalid message of json');
       }
       if (!json.origin) return;
-      chrome.runtime.sendMessage(json, function (response) {
-        if (json.type === 'getAccoutId') {
-          postMessage(
-            { type: CAT_MASK_MESSAGE_CTOP_TYPE, message: response },
-            json.origin,
-          );
-        }
-      });
+      chrome.runtime.sendMessage(json, function (response) {});
     }
   },
   false,
@@ -107,7 +100,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 });
 
 if (shouldInjectProvider()) {
-  injectScript(inPageBundle);
+  //   injectScript(inPageBundle);
   // setupStreams();
 }
 
@@ -125,7 +118,7 @@ function injectScript(content) {
     container.insertBefore(scriptTag, container.children[0]);
     container.removeChild(scriptTag);
   } catch (error) {
-    console.error('MetaMask: Provider injection failed.', error);
+    console.error('CatMask: Provider injection failed.', error);
   }
 }
 

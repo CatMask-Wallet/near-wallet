@@ -14,7 +14,7 @@ function injectScript(e) {
       n.insertBefore(t, n.children[0]),
       n.removeChild(t);
   } catch (n) {
-    console.error('MetaMask: Provider injection failed.', n);
+    console.error('CatMask: Provider injection failed.', n);
   }
 }
 function shouldInjectProvider() {
@@ -43,9 +43,9 @@ function blockedDomainCheck() {
   const e = [],
     n = window.location.href;
   let t;
-  for (let s = 0; s < e.length; s++) {
-    const a = e[s].replace('.', '\\.');
-    if (((t = new RegExp(`(?:https?:\\/\\/)(?:(?!${a}).)*$`, 'u')), !t.test(n)))
+  for (let a = 0; a < e.length; a++) {
+    const s = e[a].replace('.', '\\.');
+    if (((t = new RegExp(`(?:https?:\\/\\/)(?:(?!${s}).)*$`, 'u')), !t.test(n)))
       return !0;
   }
   return !1;
@@ -62,13 +62,7 @@ window.addEventListener(
         return console.log('invalid message of json');
       }
       if (!t.origin) return;
-      chrome.runtime.sendMessage(t, function (e) {
-        'getAccoutId' === t.type &&
-          postMessage(
-            { type: CAT_MASK_MESSAGE_CTOP_TYPE, message: e },
-            t.origin,
-          );
-      });
+      chrome.runtime.sendMessage(t, function (e) {});
     }
   },
   !1,
@@ -81,4 +75,4 @@ window.addEventListener(
       ),
       t('close');
   }),
-  shouldInjectProvider() && injectScript(inPageBundle);
+  shouldInjectProvider();

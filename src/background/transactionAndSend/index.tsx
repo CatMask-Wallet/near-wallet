@@ -9,6 +9,7 @@ import { CAT_MASK_MESSAGE_BTOC_TYPE } from '../constant';
 import { actionsObjToHash, IAuction } from '@/utils/tansaction';
 import { INetworkItemConfig } from '@/models/wallet';
 import { formatNearAmount } from 'near-api-js/lib/utils/format';
+import { get_ptc_message_json } from '@/utils/localStorage';
 
 interface ITransactionPostData {
   contractId: string;
@@ -20,24 +21,25 @@ export const BackgroundTransacationAndSendPage: FC<{}> = () => {
   const [messageActions, setMessageActions] = useState<IAuction[]>();
   const [originText, setOriginText] = useState('--');
   const [loading, setLoading] = useState(false);
-  useEffect(() => {
+  const init = async () => {
     try {
-      const { contractId, actions, origin } = JSON.parse(
-        localStorage.ptc_message_json,
-      ) as ITransactionPostData;
+      const { contractId, actions, origin } =
+        (await get_ptc_message_json()) as ITransactionPostData;
       setMessageContractId(contractId);
       setMessageActions(actions);
       setOriginText(origin);
     } catch (error) {
       console.log(error);
     }
+  };
+  useEffect(() => {
+    init();
   }, []);
   const onApprove = async () => {
     setLoading(true);
     try {
-      const { contractId, actions } = JSON.parse(
-        localStorage.ptc_message_json,
-      ) as ITransactionPostData;
+      const { contractId, actions } =
+        (await get_ptc_message_json()) as ITransactionPostData;
       const netWorkConfig = JSON.parse(localStorage.netWorkConfigs) as {
         [key: string]: INetworkItemConfig;
       };

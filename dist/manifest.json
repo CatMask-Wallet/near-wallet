@@ -1,17 +1,17 @@
 {
   "name": "CatMask",
   "description": "CatMask Near Wallet",
-  "version": "1.0.1",
-  "manifest_version": 2,
+  "version": "1.0.0",
+  "manifest_version": 3,
   "minimum_chrome_version": "28",
-  "browser_action": {
+  "action": {
     "default_popup": "index.html",
-    "default_icon": "logo.png"
+    "default_icon": "mask.png"
   },
   "background": {
-    "scripts": ["background/background.js"]
+    "service_worker": "background.js"
   },
-  "permissions": ["tabs", "storage"],
+  "permissions": ["storage"],
   "options_ui": {
     "page": "options.html",
     "open_in_tab": false

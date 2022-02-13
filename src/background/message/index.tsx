@@ -6,22 +6,26 @@ import { FC, useEffect, useState } from 'react';
 // @ts-expect-error
 import { parseSeedPhrase } from 'near-seed-phrase';
 import { CAT_MASK_MESSAGE_BTOC_TYPE } from '../constant';
+import { get_ptc_message_json } from '@/utils/localStorage';
 
 export const BackgroundMessagePage: FC<{}> = () => {
   const [messageText, setMessageText] = useState('--');
   const [originText, setOriginText] = useState('--');
-  useEffect(() => {
+  const init = async () => {
     try {
-      const json = JSON.parse(localStorage.ptc_message_json);
+      const json = await get_ptc_message_json();
       // const json = {type: 'signMessage', message: 'xx', origin: 'oo'}
       setMessageText(json?.message);
       setOriginText(json?.origin);
     } catch (error) {
       console.log(error);
     }
+  };
+  useEffect(() => {
+    init();
   }, []);
-  const onApprove = () => {
-    const json = JSON.parse(localStorage.ptc_message_json);
+  const onApprove = async () => {
+    const json = await get_ptc_message_json();
     // @ts-ignore
     chrome.tabs.query(
       { active: true, currentWindow: false },
