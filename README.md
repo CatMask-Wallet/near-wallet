@@ -20,6 +20,10 @@ https://chrome.google.com/webstore/detail/metamask/foilomhjgalllihmeljgjaijpbebe
 
 ## Developer documentation
 
+### Demo
+
+[Demo Live](https://catmask-wallet.github.io/near-wallet/demo/live.html)
+
 ### Install
 
 **src**
