@@ -52,7 +52,7 @@ catMask.signTransaction(new Uint8Array([2, 88]).toString() /*transaction hash*/,
     console.log(e) // {message:{publicKey: '', signature: Uint8Array.toString()}}
 })
 ```
-Project use examples： /tests/signtansaction.tsx
+Project use examples： /demo/live.html
 
 
 #### sign TransactionAndSendRaw

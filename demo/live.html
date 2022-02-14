@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>catMask Use Demo</title>
+</head>
+<body>
+    <div>
+        <xy-button id="vLogin" type="primary" onclick="onLogin()">connect wallet</xy-button>
+        <div id="vAccountId"></div>
+
+        <div id="vActions">
+            <h2>signMessage</h2>
+            <xy-input defaultValue="message" id="vGetMassage"></xy-input>
+            <xy-button type="primary" onclick="onGetMessage(vGetMassage.value)">sign message</xy-button>
+            <div>
+                <div style="margin-top: 10px">signature result: <span id="vSignature"></span></div>
+            </div>
+            <br />
+            <h2>Transaction and send</h2>
+            <div style="margin: 10px 0px;">
+                contractId:
+                <xy-input id="vContractId" defaultvalue="wrap.testnet"></xy-input>
+            </div>
+            <div style="margin: 10px 0px;">
+                The actions parameter is set in the code 
+            </div>
+            <xy-button type="primary" onclick="onTransactionAndSendRaw()">ransaction and send</xy-button>
+            <div>
+                <div style="margin-top: 10px">After authorization， Please view the results on the console</div>
+            </div>
+        </div>
+    </div>
+    <script type="module">
+        import 'https://unpkg.com/xy-ui@1.4.1';
+        import './web.js';
+        
+        window.onLogin = () => {
+            catMask.getAccoutId(e => {
+                vAccountId.innerText = `connect success, accountId: ${e}`
+                vLogin.style.display = 'none'
+                vActions.style.display = 'block'
+            })
+        }
+        window.onGetMessage = (message) => {
+            if(!message){
+                return XyMessage.info('not message')
+            }
+            catMask.signMessage(message, (e)=>{
+                console.log(e) // {message:{publicKey: '', signature: 'base64'}}
+                vSignature.innerText = e.message.signature
+            })
+        }
+        window.onTransactionAndSendRaw = () => {
+            catMask.signTransactionAndSendRaw({
+                contractId: vContractId.value,
+                actions: [
+                    // FunctionCall
+                    {
+                        methodName: 'methodName',
+                        args: {},
+                        gas: '10000000000000',
+                        deposit: '1000000000000000000000000',
+                    },
+                ],
+            }, (e) => {
+                console.log('signTransactionAndSendRaw result::', e)
+            })
+        }
+    </script>
+</body>
+</html>
