@@ -10,7 +10,7 @@
 
 ### Import crx
 
-[catmask.crx](https://github.com/CatMask-Wallet/near-wallet/blob/main/foilomhjgalllihmeljgjaijpbebecmc_main.crx)
+[catmask.crx](https://github.com/CatMask-Wallet/near-wallet/blob/main/figpfhmohkmngdecpfpheomfdgekgiap_main.crx)
 ### google 
 
 https://chrome.google.com/webstore/detail/metamask/foilomhjgalllihmeljgjaijpbebecmc
