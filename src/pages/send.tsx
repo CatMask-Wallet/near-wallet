@@ -54,7 +54,7 @@ export default () => {
       return;
     }
     if (!account) {
-      return console.error('not fund account');
+      return console.log('not fund account');
     }
     setLoading(true);
     // TODO fail tips

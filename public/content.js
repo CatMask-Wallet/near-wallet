@@ -118,7 +118,7 @@ function injectScript(content) {
     container.insertBefore(scriptTag, container.children[0]);
     container.removeChild(scriptTag);
   } catch (error) {
-    console.error('CatMask: Provider injection failed.', error);
+    console.log('CatMask: Provider injection failed.', error);
   }
 }
 

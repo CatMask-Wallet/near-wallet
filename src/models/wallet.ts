@@ -28,12 +28,12 @@ export const DefaultNetWorkConfig = {
     helperUrl: 'https://helper.mainnet.near.org',
     explorerUrl: 'https://explorer.mainnet.near.org',
   },
-  [EnumNetworkSwitch.Betanet]: {
-    networkId: EnumNetworkSwitch.Betanet,
-    nodeUrl: 'https://rpc.betanet.near.org',
-    helperUrl: 'https://helper.betanet.near.org',
-    explorerUrl: 'https://explorer.betanet.near.org',
-  },
+  // [EnumNetworkSwitch.Betanet]: {
+  //   networkId: EnumNetworkSwitch.Betanet,
+  //   nodeUrl: 'https://rpc.betanet.near.org',
+  //   helperUrl: 'https://helper.betanet.near.org',
+  //   explorerUrl: 'https://explorer.betanet.near.org',
+  // },
 };
 
 if (!localStorage.netWorkConfigs) {

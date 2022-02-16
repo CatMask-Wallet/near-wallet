@@ -4,7 +4,7 @@ import { Drawer, Button, Divider, message } from 'antd';
 import { Link, useIntl } from 'umi';
 
 export default () => {
-  const intl = useIntl()
+  const intl = useIntl();
   return (
     <>
       <Header />
@@ -27,17 +27,14 @@ export default () => {
             block
             style={{ height: 48 }}
           >
-            {intl.formatMessage({id: 'create'})} &nbsp; <span > (coming soon)</span>
+            <Link to="/create">{intl.formatMessage({ id: 'create' })}</Link>
           </Button>
         </div>
         <div style={{ height: 20 }}></div>
-        <Button
-          type="primary"
-          shape="round"
-          block
-          style={{ height: 48 }}
-        >
-          <Link to="/recover">{intl.formatMessage({ id: 'recover.text.button' })}</Link>
+        <Button type="primary" shape="round" block style={{ height: 48 }}>
+          <Link to="/recover">
+            {intl.formatMessage({ id: 'recover.text.button' })}
+          </Link>
         </Button>
       </Card>
     </>

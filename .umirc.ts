@@ -27,6 +27,11 @@ export default defineConfig({
         },
         { path: '/login', component: '@/pages/login', title: 'overview.title' },
         {
+          path: '/create',
+          component: '@/pages/create',
+          title: 'overview.title',
+        },
+        {
           path: '/recover',
           component: '@/pages/recover',
           title: 'overview.title',

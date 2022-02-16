@@ -92,8 +92,8 @@ export const actionsObjToHash = async ({
 
 export const getSign = (json: { message: string }) => {
   const recoverySeedPhrase = localStorage.recoverySeedPhrase;
-  if (!recoverySeedPhrase) return console.error('not SeedPhras');
-  if (!json.message) return console.error('not message');
+  if (!recoverySeedPhrase) return console.log('not SeedPhras');
+  if (!json.message) return console.log('not message');
   const { secretKey } = parseSeedPhrase(recoverySeedPhrase);
   const keyPair = KeyPair.fromString(secretKey);
   const sign = keyPair.sign(

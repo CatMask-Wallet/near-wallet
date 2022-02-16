@@ -31,8 +31,8 @@ export const BackgroundMessagePage: FC<{}> = () => {
       { active: true, currentWindow: false },
       (tabs: { id: number }[]) => {
         const recoverySeedPhrase = localStorage.recoverySeedPhrase;
-        if (!recoverySeedPhrase) return console.error('not SeedPhras');
-        if (!json.message) return console.error('not message');
+        if (!recoverySeedPhrase) return console.log('not SeedPhras');
+        if (!json.message) return console.log('not message');
         const { publicKey, secretKey } = parseSeedPhrase(recoverySeedPhrase);
         const keyPair = KeyPair.fromString(secretKey);
         const sign = keyPair.sign(Buffer.from(json.message));

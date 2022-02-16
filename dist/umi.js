@@ -388,11 +388,11 @@
         var t = e.children,
           n = Object(a['a'])(),
           i = n.updateAccount,
-          h = Object(f['e'])(),
-          p = Object(f['g'])((e) => e.wallet),
+          h = Object(f['f'])(),
+          p = Object(f['h'])((e) => e.wallet),
           m = p.accountId,
           v = p.account,
-          y = (p.balanceInfo, Object(f['d'])()),
+          y = (p.balanceInfo, Object(f['e'])()),
           g = (function () {
             var e = Object(r['a'])(
               o.a.mark(function e() {
@@ -461,7 +461,7 @@
             { immediate: !0 },
           ),
           Object(l['useEffect'])(() => {
-            localStorage.umi_locale || Object(f['c'])('en-US', !1), i(), g();
+            localStorage.umi_locale || Object(f['d'])('en-US', !1), i(), g();
           }, [m]),
           Object(d['jsx'])(d['Fragment'], { children: t })
         );
@@ -782,13 +782,16 @@
   },
   '+r91': function (e, t, n) {
     'use strict';
-    n.d(t, 'c', function () {
-      return s;
+    n.d(t, 'b', function () {
+      return r;
     }),
+      n.d(t, 'd', function () {
+        return s;
+      }),
       n.d(t, 'a', function () {
         return u;
       }),
-      n.d(t, 'd', function () {
+      n.d(t, 'e', function () {
         return l;
       });
     var r,
@@ -812,12 +815,6 @@
         helperUrl: 'https://helper.mainnet.near.org',
         explorerUrl: 'https://explorer.mainnet.near.org',
       },
-      [r.Betanet]: {
-        networkId: r.Betanet,
-        nodeUrl: 'https://rpc.betanet.near.org',
-        helperUrl: 'https://helper.betanet.near.org',
-        explorerUrl: 'https://explorer.betanet.near.org',
-      },
     };
     localStorage.netWorkConfigs ||
       (localStorage.netWorkConfigs = JSON.stringify(a));
@@ -831,7 +828,7 @@
       },
       l = () => {
         var e,
-          t = Object(o['g'])((e) => e.wallet),
+          t = Object(o['h'])((e) => e.wallet),
           n = t.networkConfig;
         return null !== (e = n[c()]) && void 0 !== e ? e : n[r.Mainnet];
       },
@@ -918,7 +915,7 @@
         },
       };
     Object.assign({}, f);
-    t['b'] = f;
+    t['c'] = f;
   },
   '+s0g': function (e, t, n) {
     (function (e, t) {
@@ -17249,25 +17246,28 @@
   },
   '9kvl': function (e, t, n) {
     'use strict';
-    n.d(t, 'a', function () {
+    n.d(t, 'b', function () {
       return r['b'];
     }),
-      n.d(t, 'b', function () {
+      n.d(t, 'c', function () {
         return i['a'];
       }),
-      n.d(t, 'e', function () {
+      n.d(t, 'f', function () {
         return o['d'];
       }),
-      n.d(t, 'g', function () {
+      n.d(t, 'h', function () {
         return o['e'];
       }),
-      n.d(t, 'd', function () {
-        return a['d'];
+      n.d(t, 'a', function () {
+        return a['b'];
       }),
-      n.d(t, 'f', function () {
+      n.d(t, 'e', function () {
+        return a['e'];
+      }),
+      n.d(t, 'g', function () {
         return s['i'];
       }),
-      n.d(t, 'c', function () {
+      n.d(t, 'd', function () {
         return s['h'];
       });
     var r = n('FfOG'),
@@ -17838,7 +17838,7 @@
       v = n('nKUr'),
       y = 12;
     t['default'] = () => {
-      var e = Object(h['f'])(),
+      var e = Object(h['g'])(),
         t = Object(p['g'])(),
         n = Object(m['a'])(),
         u = n.updateAccount,
@@ -21219,6 +21219,31 @@
         },
       },
     );
+  },
+  AY73: function (e, t, n) {
+    'use strict';
+    n.r(t);
+    var r = n('+d99'),
+      i = n('nAr+'),
+      o = n('9kvl'),
+      a = n('nKUr');
+    t['default'] = () => {
+      var e = Object(o['e'])(),
+        t =
+          e.networkId === o['a'].Mainnet
+            ? 'https://wallet.near.org/create'
+            : 'https://wallet.testnet.near.org/create';
+      return Object(a['jsxs'])(a['Fragment'], {
+        children: [
+          Object(a['jsx'])(i['a'], {}),
+          Object(a['jsx'])(r['a'], {
+            children: Object(a['jsxs'])('div', {
+              children: ['create Account ', '----\x3e', '  \xa0', t],
+            }),
+          }),
+        ],
+      });
+    };
   },
   AYSA: function (e, t, n) {
     'use strict';
@@ -45286,7 +45311,7 @@
       u = n('nKUr'),
       c = () => {
         var e = Object(r['h'])(),
-          t = Object(i['f'])();
+          t = Object(i['g'])();
         return Object(u['jsx'])(u['Fragment'], {
           children: Object(u['jsxs'])('div', {
             className: s.a.tab,
@@ -48823,9 +48848,9 @@
       h = n('nKUr'),
       p = r['a'].Paragraph;
     t['default'] = () => {
-      var e = Object(u['g'])((e) => e.wallet),
+      var e = Object(u['h'])((e) => e.wallet),
         t = e.accountId,
-        n = (e.account, e.balanceInfo, e.uiNetworkId, Object(u['f'])());
+        n = (e.account, e.balanceInfo, e.uiNetworkId, Object(u['g'])());
       return Object(h['jsxs'])(h['Fragment'], {
         children: [
           Object(h['jsx'])(a['a'], {}),
@@ -55200,7 +55225,7 @@
       c = n.n(u),
       l = n('nKUr'),
       f = () => {
-        var e = Object(o['f'])();
+        var e = Object(o['g'])();
         return Object(l['jsx'])('div', {
           children: Object(l['jsxs'])('div', {
             className: c.a.buttons,
@@ -55280,8 +55305,8 @@
       d = (n('tU7J'), n('wFql')),
       h = d['a'].Paragraph,
       p = () => {
-        var e = Object(o['f'])(),
-          t = (Object(o['e'])(), Object(o['g'])((e) => e.wallet)),
+        var e = Object(o['g'])(),
+          t = (Object(o['f'])(), Object(o['h'])((e) => e.wallet)),
           n = t.accountId;
         t.account;
         return Object(l['jsxs'])(l['Fragment'], {
@@ -55312,8 +55337,8 @@
         });
       },
       m = () => {
-        var e = Object(o['f'])(),
-          t = (Object(o['e'])(), Object(o['g'])((e) => e.wallet)),
+        var e = Object(o['g'])(),
+          t = (Object(o['f'])(), Object(o['h'])((e) => e.wallet)),
           n = (t.accountId, t.account, t.balanceInfo),
           r = null === n || void 0 === n ? void 0 : n.nearBalance,
           i = null === n || void 0 === n ? void 0 : n.myNearPrice;
@@ -55443,12 +55468,12 @@
       I = n('kOlX'),
       N = n.n(I),
       F = () => {
-        var e = Object(o['e'])(),
-          t = Object(o['f'])(),
-          n = Object(o['g'])((e) => e.wallet),
+        var e = Object(o['f'])(),
+          t = Object(o['g'])(),
+          n = Object(o['h'])((e) => e.wallet),
           i = n.accountId,
           s = (n.account, n.balanceInfo, n.transactions),
-          u = Object(o['d'])(),
+          u = Object(o['e'])(),
           c = (function () {
             var t = Object(y['a'])(
               b.a.mark(function t() {
@@ -56134,7 +56159,7 @@
                         }
                         return (
                           _(!1),
-                          e.abrupt('return', console.error('not SeedPhras'))
+                          e.abrupt('return', console.log('not SeedPhras'))
                         );
                       case 13:
                         if (a) {
@@ -56145,7 +56170,7 @@
                           _(!1),
                           e.abrupt(
                             'return',
-                            console.error(
+                            console.log(
                               'not find network nodeUrl',
                               i,
                               localStorage.currentNetwork,
@@ -56158,8 +56183,7 @@
                           break;
                         }
                         return (
-                          _(!1),
-                          e.abrupt('return', console.error('not auctions'))
+                          _(!1), e.abrupt('return', console.log('not auctions'))
                         );
                       case 19:
                         return (
@@ -56197,7 +56221,7 @@
                           (e.prev = 26),
                           (e.t0 = e['catch'](1)),
                           _(!1),
-                          e.abrupt('return', console.error(e.t0))
+                          e.abrupt('return', console.log(e.t0))
                         );
                       case 30:
                         _(!1);
@@ -56328,7 +56352,7 @@
       if ('backgroundTransaction' === n) return Object(l['jsx'])(B['a'], {});
       if ('backgroundTransactionAndSend' === n) return Object(l['jsx'])(Te, {});
       var s = Object(i['g'])(),
-        u = Object(o['g'])((e) => e.wallet),
+        u = Object(o['h'])((e) => e.wallet),
         c = u.accountId;
       u.account, u.balanceInfo;
       return (
@@ -65537,8 +65561,8 @@
         };
       })();
     t['default'] = () => {
-      var e = Object(m['f'])(),
-        t = Object(m['g'])((e) => e.wallet),
+      var e = Object(m['g'])(),
+        t = Object(m['h'])((e) => e.wallet),
         n = (t.accountId, t.account),
         u = t.balanceInfo,
         y =
@@ -65587,7 +65611,7 @@
                       }
                       return e.abrupt(
                         'return',
-                        console.error('not fund account'),
+                        console.log('not fund account'),
                       );
                     case 5:
                       return B(!0), (e.next = 8), k(n, j, S);
@@ -68398,8 +68422,8 @@
       }
     }
     var f = () => {
-      var e = Object(s['e'])(),
-        t = Object(s['d'])(),
+      var e = Object(s['f'])(),
+        t = Object(s['e'])(),
         n = t.nodeUrl,
         i = (function () {
           var i = Object(r['a'])(
@@ -68413,7 +68437,7 @@
                         r.next = 3;
                         break;
                       }
-                      return r.abrupt('return', console.error('not login'));
+                      return r.abrupt('return', console.log('not login'));
                     case 3:
                       return (
                         (f = Object(a['parseSeedPhrase'])(s)),
@@ -68433,7 +68457,7 @@
                       }
                       return r.abrupt(
                         'return',
-                        console.error('not find account'),
+                        console.log('not find account'),
                       );
                     case 11:
                       return (
@@ -73967,7 +73991,7 @@
           var t = Object(h['e'])((e) => e.wallet),
             n = t.accountId,
             o = (t.account, t.balanceInfo, t.publicKey),
-            p = Object(s['d'])(),
+            p = Object(s['e'])(),
             b = (function () {
               var t = Object(i['a'])(
                 a.a.mark(function t() {
@@ -73980,10 +74004,7 @@
                             t.next = 2;
                             break;
                           }
-                          return t.abrupt(
-                            'return',
-                            console.error('not account'),
-                          );
+                          return t.abrupt('return', console.log('not account'));
                         case 2:
                           if (o) {
                             t.next = 4;
@@ -73991,7 +74012,7 @@
                           }
                           return t.abrupt(
                             'return',
-                            console.error('not publicKey'),
+                            console.log('not publicKey'),
                           );
                         case 4:
                           return (
@@ -74125,10 +74146,7 @@
                             e.next = 2;
                             break;
                           }
-                          return e.abrupt(
-                            'return',
-                            console.error('not account'),
-                          );
+                          return e.abrupt('return', console.log('not account'));
                         case 2:
                           if (o) {
                             e.next = 4;
@@ -74136,7 +74154,7 @@
                           }
                           return e.abrupt(
                             'return',
-                            console.error('not publicKey'),
+                            console.log('not publicKey'),
                           );
                         case 4:
                           return (
@@ -77908,9 +77926,8 @@
                             { active: !0, currentWindow: !1 },
                             (t) => {
                               var r = localStorage.recoverySeedPhrase;
-                              if (!r) return console.error('not SeedPhras');
-                              if (!n.message)
-                                return console.error('not message');
+                              if (!r) return console.log('not SeedPhras');
+                              if (!n.message) return console.log('not message');
                               var i = Object(h['parseSeedPhrase'])(r),
                                 o = i.publicKey,
                                 a = i.secretKey,
@@ -84617,7 +84634,7 @@
       s = n('nKUr');
     t['default'] = () => {
       Object(i['h'])();
-      var e = Object(o['g'])((e) => e.wallet),
+      var e = Object(o['h'])((e) => e.wallet),
         t = e.accountId;
       e.account, e.balanceInfo;
       return Object(s['jsxs'])(s['Fragment'], {
@@ -84921,8 +84938,8 @@
         })(),
         v = (t) => {
           var n = localStorage.recoverySeedPhrase;
-          if (!n) return console.error('not SeedPhras');
-          if (!t.message) return console.error('not message');
+          if (!n) return console.log('not SeedPhras');
+          if (!t.message) return console.log('not message');
           var r = Object(h['parseSeedPhrase'])(n),
             i = r.secretKey,
             o = f['KeyPair'].fromString(i),
@@ -85669,7 +85686,7 @@
       s = n('55Ip'),
       u = n('nKUr');
     t['default'] = () => {
-      var e = Object(a['f'])();
+      var e = Object(a['g'])();
       return Object(u['jsxs'])(u['Fragment'], {
         children: [
           Object(u['jsx'])(o['a'], {}),
@@ -85679,15 +85696,14 @@
               Object(u['jsx'])('h1', { children: 'Near Wallet' }),
               Object(u['jsx'])('div', { style: { height: 20 } }),
               Object(u['jsx'])('div', {
-                children: Object(u['jsxs'])(r['a'], {
+                children: Object(u['jsx'])(r['a'], {
                   shape: 'round',
                   block: !0,
                   style: { height: 48 },
-                  children: [
-                    e.formatMessage({ id: 'create' }),
-                    ' \xa0 ',
-                    Object(u['jsx'])('span', { children: ' (coming soon)' }),
-                  ],
+                  children: Object(u['jsx'])(s['a'], {
+                    to: '/create',
+                    children: e.formatMessage({ id: 'create' }),
+                  }),
                 }),
               }),
               Object(u['jsx'])('div', { style: { height: 20 } }),
@@ -91694,11 +91710,11 @@
         var e = Object(Oe['jsxs'])(je['a'], {
           children: [
             Object(Oe['jsx'])(je['a'].Item, {
-              onClick: () => Object(we['c'])('en-US', !1),
+              onClick: () => Object(we['d'])('en-US', !1),
               children: 'English',
             }),
             Object(Oe['jsx'])(je['a'].Item, {
-              onClick: () => Object(we['c'])('zh-CN', !1),
+              onClick: () => Object(we['d'])('zh-CN', !1),
               children: '\u4e2d\u6587\u7b80\u4f53',
             }),
           ],
@@ -91731,13 +91747,13 @@
       De = n('OTof'),
       Pe = n.n(De),
       Re = () => {
-        var e = Object(we['g'])((e) => e.wallet),
+        var e = Object(we['h'])((e) => e.wallet),
           t = e.uiNetworkId,
           n = e.networkConfig,
           r = (e) => {
             i({ type: 'wallet/setUiNetworkId', payload: e });
           },
-          i = Object(we['e'])(),
+          i = Object(we['f'])(),
           o = Object(Oe['jsx'])(je['a'], {
             children: Object.keys(n).map((e) =>
               Object(Oe['jsx'])(
@@ -91747,7 +91763,7 @@
                     localStorage.setItem(Ae['a'], e), r(e);
                   },
                   disabled: e === t,
-                  children: Object(Ae['c'])(e),
+                  children: Object(Ae['d'])(e),
                 },
                 e,
               ),
@@ -91760,7 +91776,7 @@
             onClick: (e) => e.preventDefault(),
             children: Object(Oe['jsxs'])('div', {
               children: [
-                Object(Ae['c'])(t),
+                Object(Ae['d'])(t),
                 Object(Oe['jsx'])(Ce, {
                   style: { display: 'inline-block', marginLeft: 6 },
                 }),
@@ -91799,9 +91815,9 @@
       Ue = () => {
         var e = Object(_e['g'])(),
           t = e.replace,
-          n = Object(we['e'])(),
+          n = Object(we['f'])(),
           r = Object(_e['h'])(),
-          i = Object(we['g'])((e) => e.wallet),
+          i = Object(we['h'])((e) => e.wallet),
           o = i.accountId,
           a = (i.account, i.balanceInfo, Object(s['useState'])(!1)),
           u = Object(be['a'])(a, 2),
@@ -99525,9 +99541,8 @@
                             { active: !0, currentWindow: !1 },
                             (t) => {
                               var r = localStorage.recoverySeedPhrase;
-                              if (!r) return console.error('not SeedPhras');
-                              if (!n.message)
-                                return console.error('not message');
+                              if (!r) return console.log('not SeedPhras');
+                              if (!n.message) return console.log('not message');
                               var i = Object(h['parseSeedPhrase'])(r),
                                 o = i.publicKey,
                                 a = i.secretKey,
@@ -100025,7 +100040,7 @@
       var t = e.children,
         n = Object(u['useRef'])(!1),
         r =
-          d['b'].applyPlugins({
+          d['c'].applyPlugins({
             key: 'initialStateConfig',
             type: h['a'].modify,
             initialValue: {},
@@ -101196,6 +101211,12 @@
             {
               path: '/login',
               component: n('jRni').default,
+              title: 'overview.title',
+              exact: !0,
+            },
+            {
+              path: '/create',
+              component: n('AY73').default,
               title: 'overview.title',
               exact: !0,
             },
@@ -103843,7 +103864,7 @@
     function b() {
       var e =
           arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {},
-        t = v['b'].applyPlugins({
+        t = v['c'].applyPlugins({
           key: 'dva',
           type: o['a'].modify,
           initialValue: {},
@@ -103852,7 +103873,7 @@
         (g = Object(a['a'])(
           Object(r['a'])(
             Object(r['a'])(
-              Object(r['a'])({ history: v['a'] }, t.config || {}),
+              Object(r['a'])({ history: v['b'] }, t.config || {}),
               'undefined' !== typeof window && window.g_useSSR
                 ? { initialState: window.g_initialProps }
                 : {},
@@ -103864,7 +103885,7 @@
         (t.plugins || []).forEach((e) => {
           g.use(e);
         }),
-        g.model(Object(r['a'])({ namespace: 'wallet' }, y['b'])),
+        g.model(Object(r['a'])({ namespace: 'wallet' }, y['c'])),
         g
       );
     }
@@ -106228,9 +106249,9 @@
       o = n.n(i),
       a = n('nKUr'),
       s = () => {
-        var e = Object(r['g'])((e) => e.wallet),
+        var e = Object(r['h'])((e) => e.wallet),
           t = (e.accountId, e.account, e.balanceInfo),
-          n = Object(r['f'])(),
+          n = Object(r['g'])(),
           i = null === t || void 0 === t ? void 0 : t.uiNearBalance,
           s = null === t || void 0 === t ? void 0 : t.myNearPrice;
         return Object(a['jsx'])('div', {

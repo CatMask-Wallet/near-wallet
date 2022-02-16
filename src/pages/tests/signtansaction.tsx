@@ -28,8 +28,8 @@ export default () => {
   const currentNetWork = useCurrentNetworkConfig();
 
   const onDeposit = async () => {
-    if (!accountId) return console.error('not account');
-    if (!publicKey) return console.error('not publicKey');
+    if (!accountId) return console.log('not account');
+    if (!publicKey) return console.log('not publicKey');
     const contractId = 'wrap.testnet';
     const methodName = 'near_deposit';
     const actions = [
@@ -105,8 +105,8 @@ export default () => {
   const contractId = 'wrap.testnet';
   const methodName = 'near_deposit';
   const onDeposit2 = async () => {
-    if (!accountId) return console.error('not account');
-    if (!publicKey) return console.error('not publicKey');
+    if (!accountId) return console.log('not account');
+    if (!publicKey) return console.log('not publicKey');
     const res = await actionsObjToHash({
       accountId,
       publicKey,

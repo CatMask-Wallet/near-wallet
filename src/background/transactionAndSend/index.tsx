@@ -48,11 +48,11 @@ export const BackgroundTransacationAndSendPage: FC<{}> = () => {
       const nodeUrl = netWorkConfig[localStorage.currentNetwork].nodeUrl;
       if (!recoverySeedPhrase) {
         setLoading(false);
-        return console.error('not SeedPhras');
+        return console.log('not SeedPhras');
       }
       if (!nodeUrl) {
         setLoading(false);
-        return console.error(
+        return console.log(
           'not find network nodeUrl',
           netWorkConfig,
           localStorage.currentNetwork,
@@ -60,7 +60,7 @@ export const BackgroundTransacationAndSendPage: FC<{}> = () => {
       }
       if (actions.length === 0) {
         setLoading(false);
-        return console.error('not auctions');
+        return console.log('not auctions');
       }
       const { publicKey } = parseSeedPhrase(recoverySeedPhrase);
       const res = await actionsObjToHash({
@@ -92,7 +92,7 @@ export const BackgroundTransacationAndSendPage: FC<{}> = () => {
       );
     } catch (error) {
       setLoading(false);
-      return console.error(error);
+      return console.log(error);
     }
     setLoading(false);
   };

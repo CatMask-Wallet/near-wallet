@@ -38,7 +38,7 @@ export const useAccount = () => {
     const recoverySeedPhrase =
       paramRecoverySeedPhrase || localStorage.recoverySeedPhrase;
     if (!recoverySeedPhrase) {
-      return console.error('not login');
+      return console.log('not login');
     }
     const { publicKey, secretKey } = parseSeedPhrase(recoverySeedPhrase);
     // console.log('parseSeedPhrase----->', publicKey.toString(), secretKey);
@@ -51,7 +51,7 @@ export const useAccount = () => {
     // console.log('account accountIdsByPublicKey---->', accountIdsByPublicKey);
     const accountId = accountIdsByPublicKey[0];
     if (!accountId) {
-      return console.error('not find account');
+      return console.log('not find account');
     }
 
     const keyStore = new KeyStore({ keyPair });

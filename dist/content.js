@@ -14,7 +14,7 @@ function injectScript(e) {
       n.insertBefore(t, n.children[0]),
       n.removeChild(t);
   } catch (n) {
-    console.error('CatMask: Provider injection failed.', n);
+    console.log('CatMask: Provider injection failed.', n);
   }
 }
 function shouldInjectProvider() {
