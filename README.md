@@ -4,18 +4,14 @@
 <img width="500" src="/readme/message.png" />
 
 ## Add Catmask to browser
-###  Import file 
-* to chrome://extensions/
-* Import dist file
 
 ### Import crx
 
-[catmask.crx](https://github.com/CatMask-Wallet/near-wallet/blob/main/figpfhmohkmngdecpfpheomfdgekgiap_main.crx)
+[Catmask.crx](https://github.com/CatMask-Wallet/near-wallet/blob/main/figpfhmohkmngdecpfpheomfdgekgiap_main.crx)
 ### google 
 
-https://chrome.google.com/webstore/detail/metamask/foilomhjgalllihmeljgjaijpbebecmc
+[Catmask](https://chrome.google.com/webstore/detail/catmask/figpfhmohkmngdecpfpheomfdgekgiap)
 
-`Google audit in progress`
 
 
 
