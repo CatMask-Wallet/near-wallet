@@ -42,13 +42,13 @@ catMask.getAccoutId(e => {
  #### sign Message
  ```js
 catMask.signMessage('you messageText..', (e)=>{
-    console.log(e) // {message:{publicKey: '', signature: 'base64'}}
+    console.log(e) // {publicKey: '', signature: 'base64'}
 })
  ```
  #### sign Transaction
  ```js
 catMask.signTransaction(new Uint8Array([2, 88]).toString() /*transaction hash*/, (e)=>{
-    console.log(e) // {message:{publicKey: '', signature: Uint8Array.toString()}}
+    console.log(e) // {publicKey: '', signature: Uint8Array.toString()}
 })
 ```
 Project use examples： /demo/live.html
@@ -78,6 +78,7 @@ catMask.signTransactionAndSendRaw({
         }
       ],
 }, (e) => {
+    // {hash: '', res: {}}
     console.log(e)
 })
 ```

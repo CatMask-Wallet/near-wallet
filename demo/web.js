@@ -10,6 +10,7 @@ const catMask = {
     );
     const a = function (t) {
       'chrome_web3_wallet_CatMaskMessageType_content_to_page' === t.data.type &&
+        typeof t.data?.message === 'string' &&
         (delete t.data.type,
         e(t.data?.message),
         window.removeEventListener('message', a));
@@ -31,8 +32,10 @@ const catMask = {
     );
     const s = function (e) {
       'chrome_web3_wallet_CatMaskMessageType_content_to_page' === e.data.type &&
+        typeof e.data?.message?.signature === 'string' &&
+        typeof e.data?.message?.publicKey === 'string' &&
         (delete e.data.type,
-        t(e.data),
+        t(e.data.message),
         window.removeEventListener('message', s));
     };
     window.addEventListener('message', s);
@@ -52,8 +55,10 @@ const catMask = {
     );
     const s = function (e) {
       'chrome_web3_wallet_CatMaskMessageType_content_to_page' === e.data.type &&
+        typeof e.data?.message?.signature === 'string' &&
+        typeof e.data?.message?.publicKey === 'string' &&
         (delete e.data.type,
-        t(e.data),
+        t(e.data.message),
         window.removeEventListener('message', s));
     };
     window.addEventListener('message', s);
@@ -73,8 +78,9 @@ const catMask = {
     );
     const s = function (e) {
       'chrome_web3_wallet_CatMaskMessageType_content_to_page' === e.data.type &&
+        typeof e.data?.message?.hash === 'string' &&
         (delete e.data.type,
-        t(e.data),
+        t(e.data.message),
         window.removeEventListener('message', s));
     };
     window.addEventListener('message', s);

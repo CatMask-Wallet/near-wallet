@@ -60,8 +60,8 @@
                 return XyMessage.info('not message')
             }
             catMask.signMessage(message, (e)=>{
-                console.log(e) // {message:{publicKey: '', signature: 'base64'}}
-                vSignature.innerText = e.message.signature
+                console.log(e) // {publicKey: '', signature: 'base64'}
+                vSignature.innerText = e.signature
             })
         }
         window.onSendTransfer = (receive) => {

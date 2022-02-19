@@ -9,6 +9,7 @@
 
 # chrome://extensions/
 /dist
+/dist/*
 dist.zip
 
 # misc
