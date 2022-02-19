@@ -11,7 +11,7 @@ import {
   WalletStateType,
 } from 'umi';
 import styles from './send.less';
-import { Input, Button } from 'antd';
+import { Input, Button, message } from 'antd';
 import { Account } from 'near-api-js';
 import { parseNearAmount } from 'near-api-js/lib/utils/format';
 import BN from 'bn.js';
@@ -49,18 +49,23 @@ export default () => {
 
   // TODO check receive account id
   const onSubmit = async () => {
-    console.log('inputPrice---->', inputPrice);
-    if (!inputPrice || !isInvalid) {
+    console.log('inputPrice---->', inputPrice, isInvalid);
+    if (!inputPrice || isInvalid) {
       return;
     }
     if (!account) {
       return console.log('not fund account');
     }
     setLoading(true);
-    // TODO fail tips
-    await send(account, receive, inputPrice);
-    setLoading(false);
-    push('/success');
+    try {
+      await send(account, receive, inputPrice);
+      setLoading(false);
+      push('/success');
+    } catch (error) {
+      setLoading(false);
+      message.error('send fail');
+      console.log('error---->', error);
+    }
   };
   return (
     <>
@@ -118,6 +123,7 @@ export default () => {
             </span>
           }
           value={receive}
+          defaultValue={receive}
           onInput={(event: any) => setReceive(event?.target?.value)}
         />
         <div

@@ -19,6 +19,17 @@
                 <div style="margin-top: 10px">signature result: <span id="vSignature"></span></div>
             </div>
             <br />
+            <h2>Transfer</h2>
+            <div style="margin: 10px 0px;">
+                receive:
+                <xy-input id="vReceive" defaultvalue="bigcat.testnet"></xy-input>
+            </div>
+            <div style="margin: 10px 0px;">
+                send num:
+                <xy-input id="vSendTansferNum" type="number" defaultvalue="1"></xy-input>
+            </div>
+            <xy-button type="primary" onclick="onSendTransfer(vReceive.value)">Send transfer</xy-button>
+
             <h2>Transaction and send</h2>
             <div style="margin: 10px 0px;">
                 contractId:
@@ -51,6 +62,24 @@
             catMask.signMessage(message, (e)=>{
                 console.log(e) // {message:{publicKey: '', signature: 'base64'}}
                 vSignature.innerText = e.message.signature
+            })
+        }
+        window.onSendTransfer = (receive) => {
+            if(!receive){
+                return XyMessage.info('not receive')
+            }
+            if(!vSendTansferNum.value){
+                return XyMessage.info('not tansfer num')
+            }
+            catMask.signTransactionAndSendRaw({
+                contractId: receive,
+                actions: [
+                    {
+                        deposit:  (vSendTansferNum.value | 0) + '000000000000000000000000',
+                    },
+                ],
+            }, (e) => {
+                console.log('onSendTransfer result::', e)
             })
         }
         window.onTransactionAndSendRaw = () => {

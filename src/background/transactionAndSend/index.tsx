@@ -6,7 +6,12 @@ import { FC, useEffect, useState } from 'react';
 // @ts-expect-error
 import { parseSeedPhrase } from 'near-seed-phrase';
 import { CAT_MASK_MESSAGE_BTOC_TYPE } from '../constant';
-import { actionsObjToHash, IAuction } from '@/utils/tansaction';
+import {
+  actionsObjToHash,
+  auctionIsStake,
+  auctionIsTransafer,
+  IAuction,
+} from '@/utils/tansaction';
 import { INetworkItemConfig } from '@/models/wallet';
 import { formatNearAmount } from 'near-api-js/lib/utils/format';
 import { get_ptc_message_json } from '@/utils/localStorage';
@@ -116,16 +121,51 @@ export const BackgroundTransacationAndSendPage: FC<{}> = () => {
               return (
                 <div key={auction.methodName}>
                   <Collapse defaultActiveKey={[]}>
-                    <Panel header={auction.methodName} key={auction.methodName}>
-                      <div style={{ padding: '0px 0px 0px 20px' }}>
-                        <p>deposit: {formatNearAmount(auction.deposit)} Near</p>
-                        <p>gas: {auction.gas}</p>
-                      </div>
-                      <Collapse defaultActiveKey={[]} ghost>
-                        <Panel header="args" key="1">
-                          <p>{JSON.stringify(auction.args)}</p>
-                        </Panel>
-                      </Collapse>
+                    <Panel
+                      header={
+                        auctionIsTransafer(auction)
+                          ? 'Transfer'
+                          : auctionIsStake(auction)
+                          ? 'Stake'
+                          : `method: ${auction.methodName}`
+                      }
+                      key={auction.methodName}
+                    >
+                      {auctionIsTransafer(auction) ? (
+                        <>
+                          <div style={{ padding: '0px 0px 0px 20px' }}>
+                            <p>
+                              deposit:{' '}
+                              {formatNearAmount(auction?.deposit ?? '0')} Near
+                            </p>
+                          </div>
+                        </>
+                      ) : auctionIsStake(auction) ? (
+                        <>
+                          <div style={{ padding: '0px 0px 0px 20px' }}>
+                            <p>publickey: {auction?.publickey}</p>
+                            <p>
+                              stake: {formatNearAmount(auction?.stake ?? '0')}{' '}
+                              Near
+                            </p>
+                          </div>
+                        </>
+                      ) : (
+                        <>
+                          <div style={{ padding: '0px 0px 0px 20px' }}>
+                            <p>
+                              deposit:{' '}
+                              {formatNearAmount(auction?.deposit ?? '0')} Near
+                            </p>
+                            <p>gas: {auction.gas}</p>
+                          </div>
+                          <Collapse defaultActiveKey={[]} ghost>
+                            <Panel header="args" key="1">
+                              <p>{JSON.stringify(auction.args)}</p>
+                            </Panel>
+                          </Collapse>
+                        </>
+                      )}
                     </Panel>
                   </Collapse>
                 </div>

@@ -5,8 +5,12 @@ import { EnZhIcon } from '../icon/enZh';
 export const LocaleSwitch = () => {
   const menu = (
     <Menu>
-      <Menu.Item onClick={() => setLocale('en-US', false)}>English</Menu.Item>
-      <Menu.Item onClick={() => setLocale('zh-CN', false)}>中文简体</Menu.Item>
+      <Menu.Item key="1" onClick={() => setLocale('en-US', false)}>
+        English
+      </Menu.Item>
+      <Menu.Item key="2" onClick={() => setLocale('zh-CN', false)}>
+        中文简体
+      </Menu.Item>
     </Menu>
   );
   return (

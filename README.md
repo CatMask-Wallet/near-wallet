@@ -13,8 +13,6 @@
 [Catmask](https://chrome.google.com/webstore/detail/catmask/figpfhmohkmngdecpfpheomfdgekgiap)
 
 
-
-
 ## Developer documentation
 
 ### Demo
@@ -69,6 +67,15 @@ catMask.signTransactionAndSendRaw({
           gas: '10000000000000',
           deposit: '1000000000000000000000000',
         },
+        // transfer
+        {
+            deposit: '1000000000000000000000000'
+        },
+        // stake
+        {
+            stake: '1000000000000000000000000',
+            publicKey: ''
+        }
       ],
 }, (e) => {
     console.log(e)

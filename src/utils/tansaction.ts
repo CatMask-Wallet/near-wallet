@@ -13,11 +13,22 @@ import { baseDecode, serialize } from 'near-api-js/node_modules/borsh';
 import { parseSeedPhrase } from 'near-seed-phrase';
 import { sendJsonRpc } from './helper-api';
 
+export const keysSort = (o: Object) => Object.keys(o).sort().join(',');
+export const auctionTransferKeySort = keysSort({ deposit: 1 });
+export const auctionStakeKeySort = keysSort({ stake: 1, publicKey: 1 });
+export const auctionIsTransafer = (auction: IAuction) =>
+  keysSort(auction) === auctionTransferKeySort;
+export const auctionIsStake = (auction: IAuction) =>
+  keysSort(auction) === auctionStakeKeySort;
+
 export interface IAuction {
   methodName: string;
   args: object;
   gas: string;
-  deposit: string;
+  deposit?: string;
+  // stake
+  stake?: string;
+  publickey?: string;
 }
 interface transactionParams {
   contractId: string;
@@ -34,11 +45,20 @@ export const actionsObjToHash = async ({
   publicKey,
 }: transactionParams) => {
   const actions = actionsObj.map((auction) => {
+    if (auctionIsTransafer(auction) && auction.deposit) {
+      return transactions.transfer(new BN(auction.deposit));
+    }
+    if (auctionIsStake(auction) && auction.stake && auction.publickey) {
+      return transactions.stake(
+        new BN(auction.stake),
+        PublicKey.from(auction.publickey),
+      );
+    }
     return transactions.functionCall(
       auction.methodName,
       Buffer.from(JSON.stringify(auction.args)),
       new BN(auction.gas),
-      new BN(auction.deposit),
+      new BN(auction?.deposit ?? 0),
     );
   });
   const blockRes = await sendJsonRpc(nodeUrl, 'block', {
