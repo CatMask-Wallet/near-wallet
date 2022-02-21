@@ -46,13 +46,12 @@ catMask.signMessage('you messageText..', (e)=>{
 })
  ```
  #### sign Transaction
+ (v: 0.0.2)
  ```js
 catMask.signTransaction(new Uint8Array([2, 88]).toString() /*transaction hash*/, (e)=>{
     console.log(e) // {publicKey: '', signature: Uint8Array.toString()}
 })
 ```
-Project use examples： /demo/live.html
-
 
 #### sign TransactionAndSendRaw
 * transaction and send
