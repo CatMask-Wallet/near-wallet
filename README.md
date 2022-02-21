@@ -17,7 +17,7 @@
 
 ### Demo
 
-[Demo Live](https://catmask-wallet.github.io/near-wallet/demo/live.html)
+[Demo Live](https://www.catmask.org/overview/development-demo)
 
 ### Install
 
