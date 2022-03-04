@@ -1,6 +1,6 @@
 # CatMask Wallet project
 
-<img width="200" src="/readme/overView.png" />
+<img width="200" src="/readme/overViewImg.png" />
 <img width="500" src="/readme/message.png" />
 
 ## Add Catmask to browser
@@ -46,7 +46,6 @@ catMask.signMessage('you messageText..', (e)=>{
 })
  ```
  #### sign Transaction
- (v: 0.0.2)
  ```js
 catMask.signTransaction(new Uint8Array([2, 88]).toString() /*transaction hash*/, (e)=>{
     console.log(e) // {publicKey: '', signature: Uint8Array.toString()}
